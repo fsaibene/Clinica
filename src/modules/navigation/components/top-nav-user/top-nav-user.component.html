@@ -13,6 +13,8 @@
     </div>
 </li>
 <ng-template #buttons>
-    <button (click)="goToLogin()" style="margin-right:4px ;" class="btn btn-primary"> Iniciar sesión </button>
-    <button (click)="goToRegister()" class="btn btn-info">Registrarse</button>
+    <div style="display: inline-flex;">
+        <button (click)="goToLogin()" style="margin-right:4px ;" class="btn btn-primary nav-button"> Ingresar </button>
+        <button (click)="goToRegister()" class="btn btn-info nav-button">Registrarse</button>
+    </div>
 </ng-template>

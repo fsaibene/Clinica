@@ -28,11 +28,11 @@ export class UserService {
     }
 
     public create(movie: User) {
-        return this.menssagesRef.doc(movie.id.toString()).set(({...movie}));
+        return this.menssagesRef.doc(movie.dni.toString()).set((Object.assign({}, movie)));
     }
     
     public delete(movie: User) {
         movie.deleted = true;
-        return this.menssagesRef.doc(movie.id.toString()).update(movie);
+        return this.menssagesRef.doc(movie.dni.toString()).update(movie);
     }
 }

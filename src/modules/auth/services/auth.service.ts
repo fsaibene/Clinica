@@ -3,9 +3,9 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
 import { UserData, UserLogged } from 'classes/message';
-import { User } from 'classes/user';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { User } from '../models';
 import { UserService } from './user.service';
 
 @Injectable()
@@ -110,18 +110,14 @@ export class AuthService {
     sign up with username/password and sign in with social auth  
     provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
     public setUserData(user: any) {
-      const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-      const userData: User = {
-        uid: user.uid,
-        email: user.email,
-        displayName: user.displayName,
-        photoURL: user.photoURL,
-        emailVerified: user.emailVerified
-      }
-      this.loggedUser.next(user.email);
-      return userRef.set(userData, {
-        merge: true
-      })
+    //   const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.dni}`);
+    //   const userData: User = new User();
+    //   userData.dni = user.dni;
+    //   userData.email = user.email;
+    //   this.loggedUser.next(user.email);
+    //   return userRef.set(userData, {
+    //     merge: true
+    //   })
     }
   
     // Sign out 

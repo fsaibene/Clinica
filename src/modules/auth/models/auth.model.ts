@@ -6,8 +6,8 @@ export class User {
     profileImage: string;
     email: string;
     birthDate: Date;
-    dni: number;
+    dni: string;
     os: string;
-    specialities: string[];
+    specialities: string;
     deleted: boolean = false;
 }
