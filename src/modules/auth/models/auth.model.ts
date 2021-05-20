@@ -5,7 +5,7 @@ export class User {
     type: string;
     profileImage: string;
     email: string;
-    age: number;
+    birthDate: Date;
     dni: number;
     os: string;
     specialities: string[];

@@ -34,8 +34,7 @@ export class AuthService {
     }
   
     // Sign in with email/password
-      public async login(email: string, password: string): Promise<void> {
-
+      public async login(email: string, password: string, assignError: (error: any) => void): Promise<void> {
           try {
             this.spinnerService.show();
             this.afAuth.signInWithEmailAndPassword(email, password).then(result => {
@@ -47,34 +46,29 @@ export class AuthService {
                     user.userLogged = email;
                     user.date = Date.now();
                     this.loggedUser.next(email);
-                    //   let userData = new UserData();
-                    //   userData.email = email;
-                    //   userData.firstName = "pepe";
-                    //   userData.lastName = "veraz";
-                    //   this.userService.user = userData;
-                    //   this.logging.create(user);
                 }
                 this.spinnerService.hide();
             }).catch(error => {
-                console.log(error);
+                if(assignError){
+                    assignError(error);
+                }
                 this.spinnerService.hide();
             });
-
           } catch (error) {
               window.alert(error.message);
           }
     }
   
     // Sign up with email/password
-    public async signUp(email: string, password: string) {
+    public async signUp(user: User, password: string) {
       try {
-        const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
+        const result = await this.afAuth.createUserWithEmailAndPassword(user.email, password);
         /* Call the SendVerificaitonMail() function when new user sign
         up and returns promise */
         // this.sendVerificationMail();
         this.setUserData(result.user);
         this.router.navigate(['dashboard']);
-        this.loggedUser.next(email);
+        this.loggedUser.next(user.email);
       } catch (error) {
         window.alert(error.message);
       }
