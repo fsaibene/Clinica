@@ -8,12 +8,11 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { firebaseConfig } from './firebase-config/firebase-config';
-import { SpinnerComponent } from './components/spinner/spinner.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-    declarations: [AppComponent, SpinnerComponent],
+    declarations: [AppComponent],
     imports: [
         BrowserModule, AppRoutingModule, HttpClientModule,
         AngularFireModule.initializeApp(firebaseConfig),
