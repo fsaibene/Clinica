@@ -17,7 +17,7 @@ const routes: Routes = [
         loadChildren: () =>
             import('modules/dashboard/dashboard-routing.module').then(
                 m => m.DashboardRoutingModule
-            ),
+            )
     },
     {
         path: 'auth',

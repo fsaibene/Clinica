@@ -21,6 +21,7 @@ import * as dashboardGuards from './guards';
 
 /* Services */
 import * as dashboardServices from './services';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 @NgModule({
     imports: [
@@ -34,7 +35,7 @@ import * as dashboardServices from './services';
         TablesModule,
     ],
     providers: [...dashboardServices.services, ...dashboardGuards.guards],
-    declarations: [...dashboardContainers.containers, ...dashboardComponents.components],
+    declarations: [...dashboardContainers.containers, ...dashboardComponents.components, WelcomeComponent],
     exports: [...dashboardContainers.containers, ...dashboardComponents.components],
 })
 export class DashboardModule {}

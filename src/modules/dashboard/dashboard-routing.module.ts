@@ -11,59 +11,29 @@ import * as dashboardContainers from './containers';
 
 /* Guards */
 import * as dashboardGuards from './guards';
+import { AuthGuard } from '@modules/auth/guards';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { StaticComponent } from './containers';
 
 /* Routes */
 export const ROUTES: Routes = [
     {
         path: '',
         data: {
-            title: 'Dashboard - SB Admin Angular',
-            breadcrumbs: [
-                {
-                    text: 'Dashboard',
-                    active: true,
-                },
-            ],
-        } as SBRouteData,
-        canActivate: [],
-        component: dashboardContainers.DashboardComponent,
-    },
-    {
-        path: 'static',
-        data: {
-            title: 'Dashboard Static - SB Admin Angular',
+            title: 'Clinica Saibene',
             breadcrumbs: [
                 {
                     text: 'Dashboard',
                     link: '/dashboard',
                 },
                 {
-                    text: 'Static',
-                    active: true,
-                },
-            ],
-        } as SBRouteData,
-        canActivate: [],
-        component: dashboardContainers.StaticComponent,
-    },
-    {
-        path: 'light',
-        data: {
-            title: 'Dashboard Light - SB Admin Angular',
-            breadcrumbs: [
-                {
-                    text: 'Dashboard',
-                    link: '/dashboard',
-                },
-                {
-                    text: 'Light',
                     active: true,
                 },
             ],
         } as SBRouteData,
         canActivate: [],
         component: dashboardContainers.LightComponent,
-    },
+    }
 ];
 
 @NgModule({
