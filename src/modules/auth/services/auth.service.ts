@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Router } from "@angular/router";
 import { UserData, UserLogged } from 'classes/message';
 import { User } from 'classes/user';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { UserService } from './user.service';
 
@@ -17,6 +18,7 @@ export class AuthService {
       public afAuth: AngularFireAuth, // Inject Firebase auth service
       public router: Router,
       public userService: UserService,
+      public spinnerService: NgxSpinnerService,
       public ngZone: NgZone // NgZone service to remove outside scope warning
     ) {    
       
@@ -28,31 +30,36 @@ export class AuthService {
               localStorage.setItem('user', "");
           }
           let storagedUser = localStorage.getItem('user');    
-          console.log(storagedUser);
       })
     }
   
     // Sign in with email/password
       public async login(email: string, password: string): Promise<void> {
+
           try {
-              await this.afAuth.signInWithEmailAndPassword(email, password).then(result => {
-                  if(result.user?.email){
-                      this.ngZone.run(() => {
-                          this.setUserData(result.user);
-                          localStorage.setItem('user', JSON.stringify(result.user));
-                          this.router.navigate(['dashboard']);
-                          let user = new UserLogged();
-                          user.userLogged = email;
-                          user.date = Date.now();
-                          let userData = new UserData();
-                          userData.email = email;
-                          userData.firstName = "pepe";
-                          userData.lastName = "veraz";
-                          this.userService.user = userData;
-                        //   this.logging.create(user);
-                      });
-                  }
-              });
+            this.spinnerService.show();
+            this.afAuth.signInWithEmailAndPassword(email, password).then(result => {
+                if(result.user?.email){
+                    this.setUserData(result.user);
+                    localStorage.setItem('user', JSON.stringify(result.user));
+                    this.router.navigate(['dashboard']);
+                    let user = new UserLogged();
+                    user.userLogged = email;
+                    user.date = Date.now();
+                    this.loggedUser.next(email);
+                    //   let userData = new UserData();
+                    //   userData.email = email;
+                    //   userData.firstName = "pepe";
+                    //   userData.lastName = "veraz";
+                    //   this.userService.user = userData;
+                    //   this.logging.create(user);
+                }
+                this.spinnerService.hide();
+            }).catch(error => {
+                console.log(error);
+                this.spinnerService.hide();
+            });
+
           } catch (error) {
               window.alert(error.message);
           }

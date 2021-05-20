@@ -2,15 +2,15 @@ import { SideNavItems, SideNavSection } from '@modules/navigation/models';
 
 export const sideNavSections: SideNavSection[] = [
     {
-        text: 'CORE',
+        text: 'Inicio',
         items: ['dashboard'],
     },
     {
-        text: 'INTERFACE',
+        text: 'Paciente',
         items: ['layouts', 'pages'],
     },
     {
-        text: 'ADDONS',
+        text: 'Mas cosas!',
         items: ['charts', 'tables'],
     },
 ];
@@ -18,62 +18,31 @@ export const sideNavSections: SideNavSection[] = [
 export const sideNavItems: SideNavItems = {
     dashboard: {
         icon: 'tachometer-alt',
-        text: 'Dashboard',
+        text: 'Bienvenido',
         link: '/dashboard',
     },
     layouts: {
         icon: 'columns',
-        text: 'Layouts',
+        text: 'Mis Turnos',
         submenu: [
             {
-                text: 'Static Navigation',
+                text: 'Historial',
                 link: '/dashboard/static',
             },
             {
-                text: 'Light Sidenav',
+                text: 'Turnos próximos',
+                link: '/dashboard/light',
+            },
+            {
+                text: '',
                 link: '/dashboard/light',
             },
         ],
     },
     pages: {
         icon: 'book-open',
-        text: 'Pages',
-        submenu: [
-            {
-                text: 'Authentication',
-                submenu: [
-                    {
-                        text: 'Login',
-                        link: '/auth/login',
-                    },
-                    {
-                        text: 'Register',
-                        link: '/auth/register',
-                    },
-                    {
-                        text: 'Forgot Password',
-                        link: '/auth/forgot-password',
-                    },
-                ],
-            },
-            {
-                text: 'Error',
-                submenu: [
-                    {
-                        text: '401 Page',
-                        link: '/error/401',
-                    },
-                    {
-                        text: '404 Page',
-                        link: '/error/404',
-                    },
-                    {
-                        text: '500 Page',
-                        link: '/error/500',
-                    },
-                ],
-            },
-        ],
+        text: 'Solicitar Turno',
+        link: '/dashboard',
     },
     charts: {
         icon: 'chart-area',
