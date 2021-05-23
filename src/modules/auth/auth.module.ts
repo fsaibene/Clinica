@@ -20,6 +20,8 @@ import * as authGuards from './guards';
 /* Services */
 import * as authServices from './services';
 import { ErrorComponent } from './components/error/error.component';
+import { SpecialistRegisterComponent } from './components/specialist-register/specialist-register.component';
+import { PatientRegisterComponent } from './components/patient-register/patient-register.component';
 
 @NgModule({
     imports: [
@@ -31,7 +33,7 @@ import { ErrorComponent } from './components/error/error.component';
         NavigationModule,
     ],
     providers: [...authServices.services, ...authGuards.guards],
-    declarations: [...authContainers.containers, ...authComponents.components, ErrorComponent],
+    declarations: [...authContainers.containers, ...authComponents.components, ErrorComponent, SpecialistRegisterComponent, PatientRegisterComponent],
     exports: [...authContainers.containers, ...authComponents.components],
 })
 export class AuthModule {}
