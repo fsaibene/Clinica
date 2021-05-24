@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '@modules/auth/models';
@@ -17,7 +17,7 @@ export class PatientRegisterComponent implements OnInit {
     public needValidate: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     public needValidate$: Observable<boolean> = this.needValidate.asObservable();
     public disableButton: boolean = false;
-    
+    @Output() onBack: EventEmitter<any> = new EventEmitter<any>()
     constructor(private fb: FormBuilder, private router: Router,
         public authService: AuthService, public userService: UserService,
         private spinnerSercie: NgxSpinnerService) {}
@@ -63,6 +63,10 @@ export class PatientRegisterComponent implements OnInit {
                 });
             });
         }
+    }
+
+    public onBackPressed(): void {
+        this.onBack.emit();
     }
 
 }

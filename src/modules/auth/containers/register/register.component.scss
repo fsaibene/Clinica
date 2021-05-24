@@ -1,1 +1,15 @@
 @import 'styles/variables.scss';
+.fotito {
+    position: inherit;
+}
+.container-foto {
+    display: inline-block;
+}
+
+.anim {
+    transition: 1s;
+    transform: translateY(100%);
+  }
+  .texto-seleccion {
+      position: absolute;
+  }

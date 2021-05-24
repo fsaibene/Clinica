@@ -1,3 +1,26 @@
 <sb-layout-auth>
-<sb-patient-register></sb-patient-register>
+    <div class="container" *ngIf="!patientSelected && !specialistSelected">
+        <div class="row justify-content-center">
+            <div class="col-lg-7" style="margin:auto; display: contents">
+                <div class="card shadow-lg container-foto border-0 rounded-lg mt-5" style="margin-top: 1rem !important;">
+                    <div class="card-header" style="height: 76px; padding-top: 2px">
+                        <h3 class="text-center font-weight-light my-4">Clinica Saibene - Registro</h3></div>
+                    <div class="card" (click)="selectRegister('specialist')" style="width: 23rem; cursor: pointer">
+                        <img class="card-img-top fotito" src="../../../../assets/img/medico.jpg" alt="Especialista">
+                        <h5 class="texto-seleccion">Especialista</h5>
+                    </div>
+                    <div class="card" (click)="selectRegister('patient')" style="width: 23rem; cursor: pointer">
+                        <img class="card-img-top fotito" src="../../../../assets/img/paciente.jpg" alt="Paciente">
+                        <h5 class="texto-seleccion" style="color: white;">Paciente</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div [ngClass]="{'transition':patientSelected}" [@enterAnimationBot] *ngIf="patientSelected">   
+        <sb-patient-register (onBack)="reset()"></sb-patient-register>
+    </div>
+    <div [ngClass]="{'transition':specialistSelected}" [@enterAnimationTop] *ngIf=" specialistSelected">   
+        <sb-patient-register (onBack)="reset()"></sb-patient-register>
+    </div>
 </sb-layout-auth>
