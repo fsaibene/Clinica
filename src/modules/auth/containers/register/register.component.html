@@ -17,10 +17,10 @@
             </div>
         </div>
     </div>
-    <div [ngClass]="{'transition':patientSelected}" [@enterAnimationBot] *ngIf="patientSelected">   
+    <div [@enterAnimationBot] *ngIf="patientSelected">   
         <sb-patient-register (onBack)="reset()"></sb-patient-register>
     </div>
-    <div [ngClass]="{'transition':specialistSelected}" [@enterAnimationTop] *ngIf=" specialistSelected">   
-        <sb-patient-register (onBack)="reset()"></sb-patient-register>
+    <div [@enterAnimationTop] *ngIf=" specialistSelected">   
+        <sb-specialist-register (onBack)="reset()"></sb-specialist-register>
     </div>
 </sb-layout-auth>

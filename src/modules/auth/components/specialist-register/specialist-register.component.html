@@ -1,1 +1,74 @@
-<p>specialist-register works!</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <a (click)="onBackPressed()" style="cursor: pointer; font-size: 14px; color:blue; position: absolute;"> Volver a seleccionar</a>
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Registrarse como Especialista</h3></div>
+                <div class="card-body">
+                    <form [formGroup]="fg" (ngSubmit)="onSubmit(fg)">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group"><label class="small mb-1">Nombre</label><input formControlName="firstName" class="form-control py-4" type="text" placeholder="Ingrese nombre" /></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group"><label class="small mb-1">Apellido</label><input formControlName="lastName" class="form-control py-4"  type="text" placeholder="Ingrese apellido" /></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group"><label class="small mb-1">Fecha de nacimiento</label><input formControlName="birthDate" class="form-control py-4"  type="date" placeholder="Fecha de nacimiento" /></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group"><label class="small mb-1">DNI</label><input formControlName="dni" class="form-control py-4" type="text" placeholder="DNI"/></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <label class="small mb-1">Especialidades</label>
+                                <div class="ng-autocomplete">
+                                    <ng-autocomplete 
+                                    #auto
+                                      [data]="data"
+                                      [searchKeyword]="keyword"
+                                      (selected)='selectEvent($event)'
+                                      (inputChanged)='onChangeSearch($event)'
+                                      [itemTemplate]="itemTemplate"
+                                      [notFoundTemplate]="notFoundTemplate"
+                                      [notFoundText] = "'Agregar especialidad'"
+                                      >                                 
+                                    </ng-autocomplete>
+                                    
+                                    <ng-template #itemTemplate let-item>
+                                    <a [innerHTML]="item.specialities"></a>
+                                    </ng-template>
+                                    
+                                      
+                                    <ng-template #notFoundTemplate let-notFound>  
+                                    <div (click)="addCustomSpec()" [innerHTML]="notFound"></div>
+                                    </ng-template>
+                                    </div>
+                                    <div>
+                                        <button *ngFor="let item of fg.controls['specialities'].value" style="margin: 2px ;" (click)="deleteSpec(item)" type="button" class="btn btn-secondary btn-sm">{{item}} &#10006;</button>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"><label class="small mb-1" for="inputEmailAddress">Email</label><input formControlName="email" class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Correo electrónico"/></div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group"><label class="small mb-1" for="inputPassword">Contraseña</label><input formControlName="password" class="form-control py-4" id="inputPassword" type="password" placeholder="Contraseña"/></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group"><label class="small mb-1" for="inputConfirmPassword">Repita Contraseña</label><input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Repita contraseña" /></div>
+                            </div>
+                        </div>
+                        <div class="form-group mt-4 mb-0"><button [disabled]="disableButton" type="submit" class="btn btn-primary btn-block">Registrarse</button></div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <div class="small"><a routerLink="/auth/login">Ya registrado? Iniciar sesión</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

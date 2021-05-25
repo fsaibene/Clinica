@@ -22,6 +22,7 @@ import * as authServices from './services';
 import { ErrorComponent } from './components/error/error.component';
 import { SpecialistRegisterComponent } from './components/specialist-register/specialist-register.component';
 import { PatientRegisterComponent } from './components/patient-register/patient-register.component';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 @NgModule({
     imports: [
@@ -31,6 +32,7 @@ import { PatientRegisterComponent } from './components/patient-register/patient-
         FormsModule,
         AppCommonModule,
         NavigationModule,
+        AutocompleteLibModule
     ],
     providers: [...authServices.services, ...authGuards.guards],
     declarations: [...authContainers.containers, ...authComponents.components, ErrorComponent, SpecialistRegisterComponent, PatientRegisterComponent],
