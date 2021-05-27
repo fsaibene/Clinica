@@ -15,7 +15,9 @@
   // Wraps the content when using the sidenav layout
   #layoutSidenav_content {
     background-color: #d6d1d0;
-    z-index: -2;
+    background-image: url("../../assets/img/landing.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
     position: relative;
     display: flex;
     flex-direction: column;
