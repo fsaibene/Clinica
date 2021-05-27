@@ -42,7 +42,7 @@ export const sideNavItems: SideNavItems = {
     pages: {
         icon: 'book-open',
         text: 'Solicitar Turno',
-        link: '/dashboard',
+        link: '/dashboard/ask-appointment',
     },
     charts: {
         icon: 'chart-area',

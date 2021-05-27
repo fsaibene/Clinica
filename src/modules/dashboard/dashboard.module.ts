@@ -22,6 +22,9 @@ import * as dashboardGuards from './guards';
 /* Services */
 import * as dashboardServices from './services';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { AskAppointmentComponent } from './containers/ask-appointment/ask-appointment.component';
+import { AppointmentHistoryComponent } from './containers/appointment-history/appointment-history.component';
+import { UpcomingAppointmentsComponent } from './containers/upcoming-appointments/upcoming-appointments.component';
 
 @NgModule({
     imports: [
@@ -35,7 +38,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
         TablesModule,
     ],
     providers: [...dashboardServices.services, ...dashboardGuards.guards],
-    declarations: [...dashboardContainers.containers, ...dashboardComponents.components, WelcomeComponent],
+    declarations: [...dashboardContainers.containers, ...dashboardComponents.components, WelcomeComponent, AskAppointmentComponent, AppointmentHistoryComponent, UpcomingAppointmentsComponent],
     exports: [...dashboardContainers.containers, ...dashboardComponents.components],
 })
 export class DashboardModule {}

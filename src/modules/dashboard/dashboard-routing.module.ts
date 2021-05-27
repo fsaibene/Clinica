@@ -14,6 +14,7 @@ import * as dashboardGuards from './guards';
 import { AuthGuard } from '@modules/auth/guards';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { StaticComponent } from './containers';
+import { AskAppointmentComponent } from './containers/ask-appointment/ask-appointment.component';
 
 /* Routes */
 export const ROUTES: Routes = [
@@ -33,6 +34,11 @@ export const ROUTES: Routes = [
         } as SBRouteData,
         canActivate: [],
         component: dashboardContainers.LightComponent,
+    },
+    {
+        path:"ask-appointment",
+        canActivate:[AuthGuard],
+        component: AskAppointmentComponent
     }
 ];
 
