@@ -1,0 +1,18 @@
+<div class="ng-autocomplete">
+    <ng-autocomplete 
+      #auto
+      [data]="data"
+      [searchKeyword]="keyword"
+      (selected)='selectEvent($event)'
+      (inputChanged)='onChangeSearch($event)'
+      [itemTemplate]="itemTemplate"
+      [notFoundTemplate]="notFoundTemplate"
+      [notFoundText] = "'No se encontro especialidad'">                                 
+    </ng-autocomplete>
+    <ng-template #itemTemplate let-item>
+        <a [innerHTML]="item.specialities"></a>
+    </ng-template>
+    <ng-template #notFoundTemplate let-notFound>  
+        <div [innerHTML]="notFound"></div>
+    </ng-template>
+</div>

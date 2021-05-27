@@ -26,6 +26,9 @@ import { AskAppointmentComponent } from './containers/ask-appointment/ask-appoin
 import { AppointmentHistoryComponent } from './containers/appointment-history/appointment-history.component';
 import { UpcomingAppointmentsComponent } from './containers/upcoming-appointments/upcoming-appointments.component';
 import { AskForTurnComponent } from './components/ask-for-turn/ask-for-turn.component';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { SelectAppointmentDateComponent } from './components/select-appointment-date/select-appointment-date.component';
+import { SpecialitiesComponent } from './components/specialities/specialities.component';
 
 @NgModule({
     imports: [
@@ -37,9 +40,10 @@ import { AskForTurnComponent } from './components/ask-for-turn/ask-for-turn.comp
         NavigationModule,
         ChartsModule,
         TablesModule,
+        AutocompleteLibModule
     ],
     providers: [...dashboardServices.services, ...dashboardGuards.guards],
-    declarations: [...dashboardContainers.containers, ...dashboardComponents.components, WelcomeComponent, AskAppointmentComponent, AppointmentHistoryComponent, UpcomingAppointmentsComponent, AskForTurnComponent],
+    declarations: [...dashboardContainers.containers, ...dashboardComponents.components, WelcomeComponent, AskAppointmentComponent, AppointmentHistoryComponent, UpcomingAppointmentsComponent, AskForTurnComponent, SelectAppointmentDateComponent, SpecialitiesComponent],
     exports: [...dashboardContainers.containers, ...dashboardComponents.components],
 })
 export class DashboardModule {}
