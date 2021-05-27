@@ -35,4 +35,8 @@ export class UserService {
         movie.deleted = true;
         return this.menssagesRef.doc(movie.dni.toString()).update(movie);
     }
+
+    public update(movie: User) {
+        return this.menssagesRef.doc(movie.dni.toString()).update(movie);
+    }
 }

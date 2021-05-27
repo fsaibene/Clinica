@@ -34,6 +34,8 @@ import { UserInfoComponent } from './containers/user-info/user-info.component';
 import { SpecialistComponent } from './components/user/specialist/specialist.component';
 import { PatientComponent } from './components/user/patient/patient.component';
 import { AdminComponent } from './components/user/admin/admin.component';
+import { SpecialistHoursComponent } from './components/user/specialist-hours/specialist-hours.component';
+import { SelectionComponent } from './components/user/specialist-hours/selection/selection.component';
 
 @NgModule({
     imports: [
@@ -48,7 +50,7 @@ import { AdminComponent } from './components/user/admin/admin.component';
         AutocompleteLibModule
     ],
     providers: [...dashboardServices.services, ...dashboardGuards.guards],
-    declarations: [...dashboardContainers.containers, ...dashboardComponents.components, WelcomeComponent, AskAppointmentComponent, AppointmentHistoryComponent, UpcomingAppointmentsComponent, AskForTurnComponent, SelectAppointmentDateComponent, SpecialitiesComponent, UserComponent, UserInfoComponent, SpecialistComponent, PatientComponent, AdminComponent],
+    declarations: [...dashboardContainers.containers, ...dashboardComponents.components, WelcomeComponent, AskAppointmentComponent, AppointmentHistoryComponent, UpcomingAppointmentsComponent, AskForTurnComponent, SelectAppointmentDateComponent, SpecialitiesComponent, UserComponent, UserInfoComponent, SpecialistComponent, PatientComponent, AdminComponent, SpecialistHoursComponent, SelectionComponent],
     exports: [...dashboardContainers.containers, ...dashboardComponents.components],
 })
 export class DashboardModule {}

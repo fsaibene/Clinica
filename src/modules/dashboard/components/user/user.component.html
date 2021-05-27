@@ -19,5 +19,14 @@
 
             </div>
         </div>
+        <div *ngIf="(currentUser | async).type == 'specialist'" class="col-lg-5">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Mis Horarios</h3></div>
+                <div *ngFor="let spec of currentUser.value.specialities">
+                    {{spec}}
+                    <sb-specialist-hours  [currentUser]="currentUser" [speciality]="spec"></sb-specialist-hours>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

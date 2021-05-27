@@ -1,0 +1,23 @@
+<div class="card-body">
+    <div class="col-md-12" *ngIf="speciality">
+        <div class="form-row">
+            <div class="col-md-12">
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="form-group"><label class="small mb-1">Duración del turno</label>
+                        <sb-selection [duration]="'15min'"></sb-selection>
+                        <sb-selection [duration]="'30min'"></sb-selection>
+                        <sb-selection [duration]="'1h'"></sb-selection>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group"><label class="small mb-1">Días de atención</label>
+                        <!-- <input [(ngModel)]="currentUser.lastName" class="form-control py-4"  type="text" placeholder="Ingrese apellido" /> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
