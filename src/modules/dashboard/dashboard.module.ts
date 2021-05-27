@@ -29,6 +29,11 @@ import { AskForTurnComponent } from './components/ask-for-turn/ask-for-turn.comp
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { SelectAppointmentDateComponent } from './components/select-appointment-date/select-appointment-date.component';
 import { SpecialitiesComponent } from './components/specialities/specialities.component';
+import { UserComponent } from './components/user/user.component';
+import { UserInfoComponent } from './containers/user-info/user-info.component';
+import { SpecialistComponent } from './components/user/specialist/specialist.component';
+import { PatientComponent } from './components/user/patient/patient.component';
+import { AdminComponent } from './components/user/admin/admin.component';
 
 @NgModule({
     imports: [
@@ -43,7 +48,7 @@ import { SpecialitiesComponent } from './components/specialities/specialities.co
         AutocompleteLibModule
     ],
     providers: [...dashboardServices.services, ...dashboardGuards.guards],
-    declarations: [...dashboardContainers.containers, ...dashboardComponents.components, WelcomeComponent, AskAppointmentComponent, AppointmentHistoryComponent, UpcomingAppointmentsComponent, AskForTurnComponent, SelectAppointmentDateComponent, SpecialitiesComponent],
+    declarations: [...dashboardContainers.containers, ...dashboardComponents.components, WelcomeComponent, AskAppointmentComponent, AppointmentHistoryComponent, UpcomingAppointmentsComponent, AskForTurnComponent, SelectAppointmentDateComponent, SpecialitiesComponent, UserComponent, UserInfoComponent, SpecialistComponent, PatientComponent, AdminComponent],
     exports: [...dashboardContainers.containers, ...dashboardComponents.components],
 })
 export class DashboardModule {}

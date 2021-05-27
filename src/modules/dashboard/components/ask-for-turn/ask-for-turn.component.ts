@@ -19,6 +19,7 @@ export class AskForTurnComponent implements OnInit {
     public disableButton: boolean = false;
 
     public searchBoxSpec: string;
+    public selectedSpec: any;
     
     constructor(private fb: FormBuilder, private router: Router,
         private firebaseStorage: FirebaseStorageService,
@@ -33,6 +34,9 @@ export class AskForTurnComponent implements OnInit {
         });
     }
     public selectSpec(spec: any) {
+        if(spec && spec.specialities) {
+            this.selectedSpec = spec.specialist; 
+        }
         console.log(spec.specialities);
     }
 }

@@ -21,4 +21,7 @@ export class TopNavUserComponent implements OnInit {
     public goToRegister(){
         this.router.navigateByUrl("/auth/register");
     }
+    public goToUserSettings() {
+        this.router.navigateByUrl("/dashboard/user");
+    }
 }

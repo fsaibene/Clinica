@@ -15,6 +15,7 @@ import { AuthGuard } from '@modules/auth/guards';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { StaticComponent } from './containers';
 import { AskAppointmentComponent } from './containers/ask-appointment/ask-appointment.component';
+import { UserInfoComponent } from './containers/user-info/user-info.component';
 
 /* Routes */
 export const ROUTES: Routes = [
@@ -39,6 +40,11 @@ export const ROUTES: Routes = [
         path:"ask-appointment",
         canActivate:[AuthGuard],
         component: AskAppointmentComponent
+    },
+    {
+        path:"user",
+        canActivate:[AuthGuard],
+        component: UserInfoComponent
     }
 ];
 

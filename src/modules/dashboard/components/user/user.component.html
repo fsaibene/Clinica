@@ -1,0 +1,23 @@
+<div class="container asd">
+    <div class="row justify-content-flex-start">
+        <div class="col-lg-5">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Información de usuario</h3></div>
+
+                <div *ngIf="(currentUser | async).type == 'specialist' else patient">
+                    <sb-specialist [user]="currentUser" [foto1Url]="foto1Url"></sb-specialist>
+                </div>
+
+                <ng-template #patient>
+                        asdasdasd
+                </ng-template>
+
+                <ng-template #admin>
+
+                </ng-template>
+
+
+            </div>
+        </div>
+    </div>
+</div>

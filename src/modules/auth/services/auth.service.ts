@@ -14,6 +14,7 @@ export class AuthService {
     userData: any; // Save logged in user data
     public loggedUser: BehaviorSubject<string> = new BehaviorSubject<string>("");
     public localStorageUser : string = "";
+    public userDataSubject:any;
     constructor(
       public afs: AngularFirestore,   // Inject Firestore service
       public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -33,15 +34,33 @@ export class AuthService {
           let storagedUser = localStorage.getItem('user');    
       })
     }
-  
+    private saveUserFirestoreData(mail: string) {
+        let instance = this;
+        this.userService.getAll().ref.where("email", "==", mail)
+        .get()
+        .then(value => {
+            let user = value.docs[0].data();
+            this.userService.user = user;
+            instance.userDataSubject = user;
+            this.setUserData(user);
+            localStorage.setItem('currentUser', JSON.stringify(user));
+        });
+    }
+
+    public getUserFromLS () {
+        return localStorage.getItem("currentUser");
+    }
+
     // Sign in with email/password
-      public async login(email: string, password: string, assignError: (error: any) => void): Promise<void> {
+    public async login(email: string, password: string, assignError: (error: any) => void): Promise<void> {
           try {
             this.spinnerService.show();
             this.afAuth.signInWithEmailAndPassword(email, password).then(result => {
                 if(result.user?.email && result.user?.emailVerified || this.isMockUser(result.user)){
                     this.setUserData(result.user);
+                    this.saveUserFirestoreData(result.user.email);
                     localStorage.setItem('user', JSON.stringify(result.user));
+
                     this.router.navigate(['dashboard']);
                     let user = new UserLogged();
                     user.userLogged = email;
@@ -138,6 +157,12 @@ export class AuthService {
       })
     }
 
+    public getUserType(): string {
+        if(this.userDataSubject.value) {
+            return this.userDataSubject.value.type;
+        }
+        return "default";
+    }
     getAuth$(): Observable<{}> {
         return of({});
     }
