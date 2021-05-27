@@ -4,8 +4,11 @@
     <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu aria-labelledby="dropdownUser">
         <h6 class="dropdown-header">
             <div class="dropdown-user-details">
-                <div class="dropdown-user-details-name"> alguien</div>
-                <div class="dropdown-user-details-email">alguien mail</div>
+                <div *ngIf="url" style="display: flex;">
+                    <img class="foto" [src]="url" alt="">
+                </div>
+                <div class="dropdown-user-details-name"> {{firstName}}</div>
+                <div class="dropdown-user-details-email">{{lastName}}</div>
             </div>
         </h6>
         <div class="dropdown-divider"></div>
