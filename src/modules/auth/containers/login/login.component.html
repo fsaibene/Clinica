@@ -3,20 +3,44 @@
         <div class="row justify-content-center">
             <div class="col-lg-5">
                 <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header" style="height: 75px;"><h4 class="text-center font-weight-light my-4">Inicio rápido</h4></div>
+                    <div class="card-body" style="display: flex; overflow: auto;">
+                        <div (click)="fillLoginData('admin')" class="img-btn">
+                            <img src="../../../../assets/profiles/admin.jpg" alt="Avatar">
+                            <label class="small mb-1" for="inputEmailAddress">Admin</label>
+                        </div>
+                        <div (click)="fillLoginData('paciente1')" class="img-btn">
+                            <img src="../../../../assets/profiles/paciente1.jpg" alt="Avatar">
+                            <label class="small mb-1" for="inputEmailAddress">Paciente 1</label>
+                        </div>
+                        <div (click)="fillLoginData('paciente2')" class="img-btn">
+                            <img src="../../../../assets/profiles/paciente2.jpg" alt="Avatar">
+                            <label class="small mb-1" for="inputEmailAddress">Paciente 2</label>
+                        </div>
+                        <div (click)="fillLoginData('especialista1')" class="img-btn">
+                            <img src="../../../../assets/profiles/especialista1.jpg" alt="Avatar">
+                            <label class="small mb-1" for="inputEmailAddress">Esp 1</label>
+                        </div>
+                        <div (click)="fillLoginData('especialista2')" class="img-btn">
+                            <img src="../../../../assets/profiles/especialista2.jpg" alt="Avatar">
+                            <label class="small mb-1" for="inputEmailAddress">Esp 2</label>
+                        </div>
+
+                    </div>
                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Iniciar sesión</h3></div>
                     <div class="card-body">
                     <sb-error [customError]="customError" [needValidate$]="needValidate$" ></sb-error>
                     <div class="form-group"><label class="small mb-1" for="inputEmailAddress">Email</label><input  [(ngModel)]="email" class="form-control py-4" id="inputEmailAddress" type="email" placeholder="Enter email address" /></div>
                     <div class="form-group"><label class="small mb-1" for="inputPassword">Contraseña</label><input  [(ngModel)]="password" class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" /></div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <div class="custom-control custom-checkbox"><input class="custom-control-input" id="rememberPasswordCheck" type="checkbox" /><label class="custom-control-label" for="rememberPasswordCheck">Remember password</label></div>
-                    </div>
+                    </div> -->
                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                        <a class="small" routerLink="/auth/forgot-password">Forgot Password?</a>
-                        <a  (click)="login()" class="btn btn-primary">Login</a></div>
+                        <a class="small" routerLink="/auth/forgot-password">Olvido la clave?</a>
+                        <a  (click)="login()" class="btn btn-primary">Iniciar sesión</a></div>
                     </div>
                     <div class="card-footer text-center">
-                        <div class="small"><a routerLink="/auth/register">Need an account? Sign up!</a></div>
+                        <div class="small"><a routerLink="/auth/register">No tiene usuario? Registrese!</a></div>
                     </div>
                 </div>
             </div>

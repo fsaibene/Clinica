@@ -5,8 +5,9 @@ import { SPECIALITIES } from '@app/specialities';
 import { User } from '@modules/auth/models';
 import { AuthService, UserService } from '@modules/auth/services';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { AutocompleteComponent } from 'angular-ng-autocomplete'
+import { FirebaseStorageService, MEDIA_STORAGE_PATH } from '@modules/auth/services/firebase-storage.service';
 
 @Component({
   selector: 'sb-specialist-register',
@@ -18,13 +19,19 @@ export class SpecialistRegisterComponent implements OnInit {
     public needValidate: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     public needValidate$: Observable<boolean> = this.needValidate.asObservable();
     public disableButton: boolean = false;
-    @Output() onBack: EventEmitter<any> = new EventEmitter<any>()
+
+    public foto1Data: FormData = new FormData();
+    public foto2Data: FormData = new FormData();
+    @Output() onBack: EventEmitter<any> = new EventEmitter<any>();
+
     public searchBoxSpec: string;
     @ViewChild('auto') auto: AutocompleteComponent;
 
     constructor(private fb: FormBuilder, private router: Router,
+        private firebaseStorage: FirebaseStorageService,
         public authService: AuthService, public userService: UserService,
-        private spinnerSercie: NgxSpinnerService) {}
+        private spinnerSercie: NgxSpinnerService) {
+    }
 
     ngOnInit() {
         this.fg =  this.fb.group({
@@ -32,6 +39,8 @@ export class SpecialistRegisterComponent implements OnInit {
             'lastName': ['', [Validators.required, Validators.maxLength(100)]],
             'birthDate': ['', [Validators.required]],
             'dni': ['', [Validators.required]],
+            'foto1': [''],
+            'foto2': [''],
             'email': ['', [Validators.required]],
             'password': ['', [Validators.required]],
             'type': ['specialist'],
@@ -63,9 +72,21 @@ export class SpecialistRegisterComponent implements OnInit {
         });
         return array;
     }
+
+    private createUserFromControls(): User {
+        let newUser = new User();
+        newUser.firstName = this.fg.controls["firstName"].value;
+        newUser.lastName = this.fg.controls["lastName"].value;
+        newUser.birthDate = this.fg.controls["birthDate"].value;
+        newUser.email = this.fg.controls["email"].value;
+        newUser.dni = this.fg.controls["dni"].value;
+        newUser.type = "specialist";
+        newUser.specialities = this.fg.controls["specialities"].value;
+        newUser.deleted = false;
+        return newUser;
+    }
     
     public selectEvent(item: any) {
-        console.log(item)
         let control = this.fg.controls["specialities"];
         let oldValue = control.value;
         if(oldValue){
@@ -75,18 +96,14 @@ export class SpecialistRegisterComponent implements OnInit {
             let newValue = [item.specialities]
             control.setValue(newValue);
         }
-      // do something with selected item
     }
   
     onChangeSearch(val: string) {
         this.searchBoxSpec = val;
-      // fetch remote data from here
-      // And reassign the 'data' which is binded to 'data' property.
     }
     
     onFocused(e: any){
         console.log(e)
-      // do something when input is focused
     }
 
     public onSubmit(form: FormGroup): void {
@@ -94,21 +111,10 @@ export class SpecialistRegisterComponent implements OnInit {
         if(form.valid) {
             this.spinnerSercie.show();
             this.disableButton = true;
-            let newUser = new User();
-            newUser.firstName = this.fg.controls["firstName"].value;
-            newUser.lastName = this.fg.controls["lastName"].value;
-            newUser.birthDate = this.fg.controls["birthDate"].value;
-            newUser.email = this.fg.controls["email"].value;
-            newUser.dni = this.fg.controls["dni"].value;
-            newUser.os = this.fg.controls["os"].value;
-            newUser.type = "default";//this.fg.controls["type"].value;
-            newUser.specialities = null;//this.fg.controls["specialities"].value;
-            newUser.deleted = false;
+            let newUser =  this.createUserFromControls(); 
             this.authService.signUp(newUser, this.fg.controls["password"].value).then((result) => {
                 this.userService.create(newUser).then(response => {
-                    console.log(response)
-                    this.spinnerSercie.hide();
-                    this.router.navigate(['auth', 'login']);
+                    this.onSignUpSucceed();
                 }).catch((error) => {
                     this.disableButton = false;
                     console.log("error al registrarse");
@@ -119,7 +125,47 @@ export class SpecialistRegisterComponent implements OnInit {
         }
     }
 
+    private onSignUpSucceed() {
+        this.uploadPhotos();
+        this.spinnerSercie.hide();
+        window.open("Registro Exitoso! Se envió un mail a la casilla para verificar el usuario.")
+        this.router.navigate(['auth', 'login']);
+    }
+    
+    private uploadPhotos(): void {
+        this.uploadPhoto("1", this.foto1Data);
+        this.uploadPhoto("2", this.foto2Data);
+    }
+
+    public uploadPhoto(photoNum: string, data: FormData) {
+        let archivo = data.get('archivo') as File;
+        if(archivo) {
+            let email = this.fg.controls["email"].value;
+            let extension = archivo.name.split(".").pop();
+            let name = MEDIA_STORAGE_PATH  + email  + "_" + photoNum + extension;
+            this.firebaseStorage.referenciaCloudStorage(name);
+            this.firebaseStorage.tareaCloudStorage(name, archivo);
+        }
+    }
+
     public onBackPressed(): void {
         this.onBack.emit();
+    }
+
+    public cambioFoto1(event: any) {
+        this.cambioArchivo(event, this.foto1Data);
+    }
+
+    public cambioFoto2(event: any) {
+        this.cambioArchivo(event, this.foto2Data);
+    }
+
+    public cambioArchivo(event: any, data: FormData) {
+        if (event.target.files.length > 0) {
+            for (let i = 0; i < event.target.files.length; i++) {
+                data.delete("archivo");
+                data.append("archivo", event.target.files[i], event.target.files[i].name)
+            }
+        }
     }
 }

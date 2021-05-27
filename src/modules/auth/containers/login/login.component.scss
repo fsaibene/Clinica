@@ -1,1 +1,13 @@
 @import 'styles/variables.scss';
+img {
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    display: inline-flex;
+    margin: auto;
+}
+.img-btn {
+    cursor: pointer;
+    text-align: center;
+    font-size: 13px;
+}

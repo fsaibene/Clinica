@@ -29,5 +29,29 @@ export class LoginComponent implements OnInit {
             this.customError = AuthFirebaseErrors[error.code];
         });
     }
+
+    public fillLoginData(user: string) {
+        let password = "123456";
+        let mail = "";
+        switch(user) {
+            case "admin":
+                mail = "admin@clinica.com";
+                break;
+            case "paciente1":
+                mail = "paciente1@clinica.com";
+                break;
+            case "paciente2":
+                mail = "paciente2@clinica.com";
+                break;
+            case "especialista1":
+                mail = "especialista1@clinica.com";
+                break;
+            case "especialista2":
+                mail = "especialista2@clinica.com";
+                break;
+        }
+        this.email = mail;
+        this.password = password;
+    }
   
 }

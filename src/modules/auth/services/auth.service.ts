@@ -3,6 +3,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
 import { UserData, UserLogged } from 'classes/message';
+import firebase from 'firebase';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { User } from '../models';
@@ -38,7 +39,7 @@ export class AuthService {
           try {
             this.spinnerService.show();
             this.afAuth.signInWithEmailAndPassword(email, password).then(result => {
-                if(result.user?.email){
+                if(result.user?.email && result.user?.emailVerified || this.isMockUser(result.user)){
                     this.setUserData(result.user);
                     localStorage.setItem('user', JSON.stringify(result.user));
                     this.router.navigate(['dashboard']);
@@ -46,7 +47,10 @@ export class AuthService {
                     user.userLogged = email;
                     user.date = Date.now();
                     this.loggedUser.next(email);
+                } else {
+                    window.alert("Debe verificar su correo, revise su casilla de mail");
                 }
+                
                 this.spinnerService.hide();
             }).catch(error => {
                 if(assignError){
@@ -58,6 +62,10 @@ export class AuthService {
               window.alert(error.message);
           }
     }
+
+    private isMockUser(user: firebase.User): boolean {
+        return user.email == "admin@clinica.com" || user.email == "paciente1@clinica.com" || user.email == "paciente2@clinica.com" || user.email == "especialista1@clinica.com" || user.email == "especialista2@clinica.com";
+    }
   
     // Sign up with email/password
     public async signUp(user: User, password: string) {
@@ -65,7 +73,7 @@ export class AuthService {
         const result = await this.afAuth.createUserWithEmailAndPassword(user.email, password);
         /* Call the SendVerificaitonMail() function when new user sign
         up and returns promise */
-        // this.sendVerificationMail();
+        this.sendVerificationMail();
         this.setUserData(result.user);
         this.router.navigate(['dashboard']);
         this.loggedUser.next(user.email);
@@ -82,7 +90,7 @@ export class AuthService {
         }
       })
       .then(() => {
-        this.router.navigate(['verify-email']);
+        this.router.navigate(['auth', 'login']);
       })
     }
   
