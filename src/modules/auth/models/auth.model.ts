@@ -10,4 +10,5 @@ export class User {
     os: string;
     specialities: string;
     deleted: boolean = false;
+    emailVerified: boolean = false;
 }

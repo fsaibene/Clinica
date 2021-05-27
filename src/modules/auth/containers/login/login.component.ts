@@ -11,8 +11,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
     styleUrls: ['login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-    public password: string = "123456789";
-    public email: string = "test@test.com";
+    public password: string;
+    public email: string;
     public customError: string;
     public needValidate: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     public needValidate$: Observable<boolean> = this.needValidate.asObservable();

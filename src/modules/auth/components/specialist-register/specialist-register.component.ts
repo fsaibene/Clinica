@@ -83,6 +83,7 @@ export class SpecialistRegisterComponent implements OnInit {
         newUser.type = "specialist";
         newUser.specialities = this.fg.controls["specialities"].value;
         newUser.deleted = false;
+        newUser.emailVerified = false;
         return newUser;
     }
     
@@ -128,7 +129,7 @@ export class SpecialistRegisterComponent implements OnInit {
     private onSignUpSucceed() {
         this.uploadPhotos();
         this.spinnerSercie.hide();
-        window.open("Registro Exitoso! Se envió un mail a la casilla para verificar el usuario.")
+        window.alert("Registro Exitoso! Se envió un mail a la casilla para verificar el usuario.")
         this.router.navigate(['auth', 'login']);
     }
     
