@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SPECIALITIES } from '@app/specialities';
-import { User } from '@modules/auth/models';
+import { Speciality, User } from '@modules/auth/models';
 import { AuthService, UserService } from '@modules/auth/services';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -74,7 +74,7 @@ export class SpecialistRegisterComponent implements OnInit {
     }
 
     private createUserFromControls(): User {
-        let newUser = new User();
+        let newUser = {} as User;
         newUser.firstName = this.fg.controls["firstName"].value;
         newUser.lastName = this.fg.controls["lastName"].value;
         newUser.birthDate = this.fg.controls["birthDate"].value;
@@ -127,6 +127,21 @@ export class SpecialistRegisterComponent implements OnInit {
     }
 
     private onSignUpSucceed() {
+        let specControl = this.fg.controls["specialities"];
+        let dni = this.fg.controls["dni"].value;
+
+        if(specControl && specControl.value) {
+            specControl.value.forEach((element: { toString: () => string; })=> {
+                let speciality = {} as Speciality;
+                speciality.name = element.toString();
+                speciality.duration = 15;
+                speciality.days = "L M M J V";
+                speciality.ranges = ["10-13", "15-18"]
+                this.userService.addSpeciality(dni.toString(), speciality);
+            });
+        }
+
+        
         this.uploadPhotos();
         this.spinnerSercie.hide();
         window.alert("Registro Exitoso! Se envió un mail a la casilla para verificar el usuario.")

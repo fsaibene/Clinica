@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
-import { User } from '../models';
+import { Speciality, User } from '../models';
 
 const userSubject: ReplaySubject<User> = new ReplaySubject(1);
 
@@ -38,5 +38,13 @@ export class UserService {
 
     public update(movie: User) {
         return this.menssagesRef.doc(movie.dni.toString()).update(movie);
+    }
+
+    public addSpeciality(id:string, speciality: Speciality) {
+        return this.menssagesRef.doc(id).collection("specialities").doc().set(speciality);
+    }
+
+    public getSpecialities(id:string) {
+        return this.menssagesRef.doc(id).collection("specialities").get();
     }
 }

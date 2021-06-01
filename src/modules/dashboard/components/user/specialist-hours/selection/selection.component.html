@@ -1,6 +1,20 @@
-<div class="form-check">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-    <label class="form-check-label" for="flexRadioDefault1">
-      {{duration}}
+<div class="form-check" *ngIf="spec">
+    <div class="radio-item">
+        <input class="form-check-input" type="radio"[id]="spec.name" [name]="spec.name" [checked]="duration == 15">
+        <label class="form-check-label" [for]="spec.name">
+            15min
+        </label>
+    </div>
+    <div class="radio-item">
+        <input class="form-check-input" type="radio" [id]="spec.name" [name]="spec.name" [checked]="duration == 30">
+        <label class="form-check-label" [for]="spec.name">
+            30min
+        </label>
+    </div>
+    <div class="radio-item">
+        <input  class="form-check-input" type="radio"[id]="spec.name" [name]="spec.name" [checked]="duration == 60">
+        <label class="form-check-label" [for]="spec.name">
+        1hs
     </label>
+</div>
 </div>

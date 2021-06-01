@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Speciality } from '@modules/auth/models';
 import { AuthService, UserService } from '@modules/auth/services';
 
 @Component({
@@ -9,7 +10,8 @@ import { AuthService, UserService } from '@modules/auth/services';
 export class SelectionComponent implements OnInit {
     @Input() duration: string;
     @Input() userDni: string;
-    @Input() spec: string;
+    @Input() spec: Speciality;
+    
     constructor(private userService: UserService, private authService: AuthService) { }
 
     ngOnInit(): void {

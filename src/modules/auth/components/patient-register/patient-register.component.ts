@@ -44,7 +44,7 @@ export class PatientRegisterComponent implements OnInit {
     }
 
     private createUserFromControls(): User {
-        let newUser = new User();
+        let newUser = {} as User;
         newUser.firstName = this.fg.controls["firstName"].value;
         newUser.lastName = this.fg.controls["lastName"].value;
         newUser.birthDate = this.fg.controls["birthDate"].value;

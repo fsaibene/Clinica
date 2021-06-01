@@ -6,9 +6,7 @@
             <div class="form-row">
                 <div class="col-md-6">
                     <div class="form-group"><label class="small mb-1">Duración del turno</label>
-                        <sb-selection [duration]="'15min'"></sb-selection>
-                        <sb-selection [duration]="'30min'"></sb-selection>
-                        <sb-selection [duration]="'1h'"></sb-selection>
+                        <sb-selection [spec]="speciality" [duration]="speciality.duration"></sb-selection>
                     </div>
                 </div>
 
