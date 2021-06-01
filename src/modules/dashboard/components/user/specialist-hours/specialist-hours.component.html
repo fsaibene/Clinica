@@ -1,10 +1,10 @@
-<div class="card-body">
+<div class="card-body ">
     <div class="col-md-12" *ngIf="speciality && currentUser">
         <div class="form-row">
             <div class="col-md-12">
             </div>
             <div class="form-row">
-                <div class="col-md-6">
+                <div class="col-md-6 contenedor">
                     <div class="form-group"><label class="small mb-1">Duración del turno</label>
                         <sb-selection [user]="currentUser" [spec]="speciality" [duration]="speciality.duration"></sb-selection>
                     </div>
@@ -12,7 +12,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group"><label class="small mb-1">Días de atención</label>
-                        <!-- <input [(ngModel)]="currentUser.lastName" class="form-control py-4"  type="text" placeholder="Ingrese apellido" /> -->
+                        <sb-specialist-avail-days [user]="currentUser" [spec]="speciality" [days]="speciality.days"></sb-specialist-avail-days>
                     </div>
                 </div>
             </div>

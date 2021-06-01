@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SpecialistHoursComponent implements OnInit {
     @Input() currentUser: BehaviorSubject<User>;
-    @Input() speciality: string = null;
+    @Input() speciality: Speciality = null;
     @Input() dni: string;
     constructor() { }
 
