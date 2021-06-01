@@ -33,7 +33,11 @@ export class UserComponent implements OnInit {
                     this.setDefaultSpecialities();
                 } else {
                     data.forEach(d =>  {
-                        this.specialities.push(d.data() as Speciality);
+                        console.log(d.data())
+
+                        let spec = d.data() as Speciality;
+                        spec.id = d.id;
+                        this.specialities.push(spec);
                     })
                     
                 }

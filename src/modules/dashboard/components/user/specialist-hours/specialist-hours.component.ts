@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from '@modules/auth/models';
+import { Speciality, User } from '@modules/auth/models';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'sb-specialist-hours',
@@ -7,8 +8,9 @@ import { User } from '@modules/auth/models';
   styleUrls: ['./specialist-hours.component.scss']
 })
 export class SpecialistHoursComponent implements OnInit {
-    @Input() currentUser: User = null;
+    @Input() currentUser: BehaviorSubject<User>;
     @Input() speciality: string = null;
+    @Input() dni: string;
     constructor() { }
 
     ngOnInit(): void {

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Speciality } from '@modules/auth/models';
+import { Speciality, User } from '@modules/auth/models';
 import { AuthService, UserService } from '@modules/auth/services';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'sb-selection',
@@ -9,7 +10,7 @@ import { AuthService, UserService } from '@modules/auth/services';
 })
 export class SelectionComponent implements OnInit {
     @Input() duration: string;
-    @Input() userDni: string;
+    @Input() user: BehaviorSubject<User>;
     @Input() spec: Speciality;
     
     constructor(private userService: UserService, private authService: AuthService) { }
@@ -17,7 +18,9 @@ export class SelectionComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    public onDurationSelect(){
-        // this.authService.userDataSubject.
+    public changeStatus(duration: number, event: any){
+        if(this.user.value){
+            this.userService.setSpecialityDuration(this.user.value.dni, this.spec, duration);
+        }
     }
 }

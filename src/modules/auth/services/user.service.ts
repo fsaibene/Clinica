@@ -47,4 +47,8 @@ export class UserService {
     public getSpecialities(id:string) {
         return this.menssagesRef.doc(id).collection("specialities").get();
     }
+
+    public setSpecialityDuration(id:string, speciality: Speciality, duration: number) {
+        return this.menssagesRef.doc(id).collection("specialities").doc(speciality.id).update({ "duration": duration});
+    }
 }
