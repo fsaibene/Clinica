@@ -1,36 +1,36 @@
 <div class="my-container">
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <input class="form-check-input" [(ngModel)]="lunChecked" (change)="changeStatus($event)" type="checkbox" value="" id="defaultCheck1" [checked]="lunChecked">
         <label class="form-check-label" for="defaultCheck1">
         Lun
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <input class="form-check-input" [(ngModel)]="marChecked" (change)="changeStatus($event)" type="checkbox" value="" id="defaultCheck1" [checked]="marChecked">
         <label class="form-check-label" for="defaultCheck1">
             Mar
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <input class="form-check-input" [(ngModel)]="mierChecked" (change)="changeStatus($event)" type="checkbox" value="" id="defaultCheck1" [checked]="mierChecked">
         <label class="form-check-label" for="defaultCheck1">
         Mié
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <input class="form-check-input" [(ngModel)]="jueChecked" (change)="changeStatus($event)" type="checkbox" value="" id="defaultCheck1" [checked]="jueChecked">
         <label class="form-check-label" for="defaultCheck1">
         Jue
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <input class="form-check-input"  [(ngModel)]="vieChecked" (change)="changeStatus($event)" type="checkbox" value="" id="defaultCheck1" [checked]="vieChecked">
         <label class="form-check-label" for="defaultCheck1">
         Vie
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <input class="form-check-input" [(ngModel)]="sabChecked" (change)="changeStatus($event)" type="checkbox" value="" id="defaultCheck1" [checked]="sabChecked">
         <label class="form-check-label" for="defaultCheck1">
         Sab
         </label>
