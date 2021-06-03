@@ -1,0 +1,15 @@
+<div class="my-container">
+    <div class="form-check">
+        <input class="form-check-input" [(ngModel)]="manianaChecked" (change)="changeStatus($event)" type="checkbox" value="" id="defaultCheck1" [checked]="manianaChecked">
+        <label class="form-check-label" for="defaultCheck1">
+            9hs-13hs
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" [(ngModel)]="tardeChecked" (change)="changeStatus($event)" type="checkbox" value="" id="defaultCheck1" [checked]="tardeChecked">
+        <label class="form-check-label" for="defaultCheck1">
+            14hs-18hs
+        </label>
+    </div>
+</div>
+  

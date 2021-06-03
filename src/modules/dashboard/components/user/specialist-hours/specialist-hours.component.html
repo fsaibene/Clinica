@@ -4,15 +4,20 @@
             <div class="col-md-12">
             </div>
             <div class="form-row">
-                <div class="col-md-6 contenedor">
+                <div class="col-md-4 contenedor">
                     <div class="form-group"><label class="small mb-1">Duración del turno</label>
                         <sb-selection [user]="currentUser" [spec]="speciality" [duration]="speciality.duration"></sb-selection>
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group"><label class="small mb-1">Días de atención</label>
                         <sb-specialist-avail-days [user]="currentUser" [spec]="speciality" [days]="speciality.days"></sb-specialist-avail-days>
+                    </div>
+                </div>
+                <div class="col-md-4 contenedor">
+                    <div class="form-group"><label class="small mb-1">Rango horario</label>
+                        <sb-specialist-avail-range [user]="currentUser" [spec]="speciality"></sb-specialist-avail-range>
                     </div>
                 </div>
             </div>
