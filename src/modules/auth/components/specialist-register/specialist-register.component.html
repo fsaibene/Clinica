@@ -39,7 +39,7 @@
                                     </ng-autocomplete>
                                     
                                     <ng-template #itemTemplate let-item>
-                                    <a [innerHTML]="item.specialities"></a>
+                                    <a [innerHTML]="item.name"></a>
                                     </ng-template>
                                     <ng-template #notFoundTemplate let-notFound>  
                                     <div (click)="addCustomSpec()" [innerHTML]="notFound"></div>

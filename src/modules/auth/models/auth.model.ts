@@ -20,3 +20,9 @@ export interface Speciality {
     days: string;
     ranges: string[];
 }
+
+export interface SpecialityDefinition {
+    id: string;
+    name: string;
+    deleted: boolean;
+}

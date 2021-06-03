@@ -2,12 +2,13 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SPECIALITIES } from '@app/specialities';
-import { Speciality, User } from '@modules/auth/models';
+import { Speciality, SpecialityDefinition, User } from '@modules/auth/models';
 import { AuthService, UserService } from '@modules/auth/services';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { AutocompleteComponent } from 'angular-ng-autocomplete'
 import { FirebaseStorageService, MEDIA_STORAGE_PATH } from '@modules/auth/services/firebase-storage.service';
+import { SpecialitiesService } from '@modules/dashboard/services/specialities.service';
 
 @Component({
   selector: 'sb-specialist-register',
@@ -30,7 +31,7 @@ export class SpecialistRegisterComponent implements OnInit {
     constructor(private fb: FormBuilder, private router: Router,
         private firebaseStorage: FirebaseStorageService,
         public authService: AuthService, public userService: UserService,
-        private spinnerSercie: NgxSpinnerService) {
+        private spinnerSercie: NgxSpinnerService, private ss: SpecialitiesService) {
     }
 
     ngOnInit() {
@@ -46,16 +47,27 @@ export class SpecialistRegisterComponent implements OnInit {
             'type': ['specialist'],
             'specialities': [[]],
         });
+        this.ss.getAll().ref.get().then(res => {
+            this.data = new Array<object>();
+            res.docs.forEach(d => {
+                let spec = d.data();
+                this.data.push(spec);
+            });
+            // this.data = SPECIALITIES;
+        });
     }
 
-    public keyword = 'specialities';
-    public data = SPECIALITIES;
+    public keyword = 'name';
+    public data: Array<object>;
     
     public addCustomSpec() {
         let control = this.fg.controls["specialities"];
         control.value.push(this.searchBoxSpec);
         this.auto.clear();
         this.auto.close();
+        let newSs = {} as SpecialityDefinition;
+        newSs.name = this.searchBoxSpec;
+        this.ss.create(newSs);
     }
     
     public deleteSpec(item: string) {
