@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from '@modules/auth/models';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'sb-patient',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./patient.component.scss']
 })
 export class PatientComponent implements OnInit {
+    @Input() user: BehaviorSubject<User> = null;
+    @Input() foto1Url: string = null;
+    public currentUser: User;
+    constructor() { }
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+    ngOnInit(): void {
+        this.currentUser = this.user.value; 
+    }
 }
