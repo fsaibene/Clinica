@@ -103,10 +103,10 @@ export class SpecialistRegisterComponent implements OnInit {
         let control = this.fg.controls["specialities"];
         let oldValue = control.value;
         if(oldValue){
-            oldValue.push(item.specialities);
+            oldValue.push(item.name);
             control.setValue(oldValue);
         } else {
-            let newValue = [item.specialities]
+            let newValue = [item.name]
             control.setValue(newValue);
         }
     }
@@ -152,7 +152,6 @@ export class SpecialistRegisterComponent implements OnInit {
                 this.userService.addSpeciality(dni.toString(), speciality);
             });
         }
-
         
         this.uploadPhotos();
         this.spinnerSercie.hide();
