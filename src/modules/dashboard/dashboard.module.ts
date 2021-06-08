@@ -38,6 +38,7 @@ import { SpecialistHoursComponent } from './components/user/specialist-hours/spe
 import { SelectionComponent } from './components/user/specialist-hours/selection/selection.component';
 import { SpecialistAvailDaysComponent } from './components/user/specialist-avail-days/specialist-avail-days.component';
 import { SpecialistAvailRangeComponent } from './components/user/specialist-avail-range/specialist-avail-range.component';
+import { SpecialitySelectionComponent } from './components/speciality-selection/speciality-selection.component';
 
 @NgModule({
     imports: [
@@ -52,7 +53,7 @@ import { SpecialistAvailRangeComponent } from './components/user/specialist-avai
         AutocompleteLibModule
     ],
     providers: [...dashboardServices.services, ...dashboardGuards.guards],
-    declarations: [...dashboardContainers.containers, ...dashboardComponents.components, WelcomeComponent, AskAppointmentComponent, AppointmentHistoryComponent, UpcomingAppointmentsComponent, AskForTurnComponent, SelectAppointmentDateComponent, SpecialitiesComponent, UserComponent, UserInfoComponent, SpecialistComponent, PatientComponent, AdminComponent, SpecialistHoursComponent, SelectionComponent, SpecialistAvailDaysComponent, SpecialistAvailRangeComponent],
+    declarations: [...dashboardContainers.containers, ...dashboardComponents.components, WelcomeComponent, AskAppointmentComponent, AppointmentHistoryComponent, UpcomingAppointmentsComponent, AskForTurnComponent, SelectAppointmentDateComponent, SpecialitiesComponent, UserComponent, UserInfoComponent, SpecialistComponent, PatientComponent, AdminComponent, SpecialistHoursComponent, SelectionComponent, SpecialistAvailDaysComponent, SpecialistAvailRangeComponent, SpecialitySelectionComponent],
     exports: [...dashboardContainers.containers, ...dashboardComponents.components],
 })
 export class DashboardModule {}
