@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./selection.component.scss']
 })
 export class SelectionComponent implements OnInit {
-    @Input() duration: string;
+    @Input() duration: number;
     @Input() user: BehaviorSubject<User>;
     @Input() spec: Speciality;
     

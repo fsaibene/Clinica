@@ -23,7 +23,7 @@ export class TopNavUserComponent implements OnInit, AfterViewInit {
         this.initData();
     }
 
-    private initData(): void {
+    public initData(): void {
         let user = this.authService.getUserFromLS();
         if(user){
             let userObj = JSON.parse(user);
