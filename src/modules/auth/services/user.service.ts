@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
-import { Speciality, User } from '../models';
+import { Appointment, Speciality, User } from '../models';
 
 const userSubject: ReplaySubject<User> = new ReplaySubject(1);
 
@@ -44,12 +44,24 @@ export class UserService {
         return this.menssagesRef.doc(id).collection("specialities").doc().set(speciality);
     }
 
+    public addAppointment(id:string, appointment: Appointment) {
+        return this.menssagesRef.doc(id).collection("appointments").doc().set(appointment);
+    }
+
     public getSpecialities(id:string) {
         return this.menssagesRef.doc(id).collection("specialities").get();
     }
 
+    public getAppointments(id:string) {
+        return this.menssagesRef.doc(id).collection("appointments").get();
+    }
+
     public setSpecialityDuration(id:string, speciality: Speciality, duration: number) {
         return this.menssagesRef.doc(id).collection("specialities").doc(speciality.id).update({ "duration": duration});
+    }
+
+    public cancelAppointment(id:string, appointment: Appointment) {
+        return this.menssagesRef.doc(id).collection("appointments").doc(appointment.id).update({ "canceled": true});
     }
 
     public setSpecialityDays(id:string, speciality: Speciality, days: string) {

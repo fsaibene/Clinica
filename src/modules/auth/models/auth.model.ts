@@ -9,6 +9,7 @@ export interface User {
     dni: string;
     os: string;
     specialities: string[];
+    appointments: Appointment[];
     deleted: boolean;
     emailVerified: boolean;
     daysAvailable: string;
@@ -24,5 +25,15 @@ export interface Speciality {
 export interface SpecialityDefinition {
     id: string;
     name: string;
+    deleted: boolean;
+}
+
+export interface Appointment {
+    id: string;
+    user: User;
+    speciality: SpecialityDefinition;
+    date: Date;
+    canceled: boolean;
+    canceledDate: Date; 
     deleted: boolean;
 }
