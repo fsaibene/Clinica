@@ -169,7 +169,7 @@ export class SpecialistRegisterComponent implements OnInit {
         if(archivo) {
             let email = this.fg.controls["email"].value;
             let extension = archivo.name.split(".").pop();
-            let name = MEDIA_STORAGE_PATH  + email  + "_" + photoNum + extension;
+            let name = MEDIA_STORAGE_PATH  + email  + "_" + photoNum + "." + extension;
             this.firebaseStorage.referenciaCloudStorage(name);
             this.firebaseStorage.tareaCloudStorage(name, archivo);
         }
