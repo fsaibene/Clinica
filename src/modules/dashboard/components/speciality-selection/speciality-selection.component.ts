@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SpecialityDefinition } from '@modules/auth/models';
+import { Speciality, SpecialityDefinition } from '@modules/auth/models';
 
 @Component({
   selector: 'sb-speciality-selection',
@@ -13,9 +13,10 @@ export class SpecialitySelectionComponent implements OnInit {
     ngOnInit(): void {
     }
 
-
-
     public getPath() {
+        if(this.spec && this.spec.imagePath){
+            return "../../assets/specs/" + this.spec.imagePath;
+        }
         return "../../assets/specs/default.jpg";
     }
 

@@ -16,7 +16,7 @@ export interface User {
 }
 export interface Speciality {
     id: string;
-    name: string;
+    name: string; 
     duration: number;
     days: string;
     ranges: string[];
@@ -25,6 +25,7 @@ export interface Speciality {
 export interface SpecialityDefinition {
     id: string;
     name: string;
+    imagePath: string;
     deleted: boolean;
 }
 
