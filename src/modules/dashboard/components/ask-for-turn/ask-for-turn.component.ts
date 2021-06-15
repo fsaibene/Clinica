@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,7 +12,33 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Component({
   selector: 'sb-ask-for-turn',
   templateUrl: './ask-for-turn.component.html',
-  styleUrls: ['./ask-for-turn.component.scss']
+  styleUrls: ['./ask-for-turn.component.scss'],
+  animations: [
+    trigger(
+      'enterAnimationBot', [
+        transition(':enter', [
+          style({transform: 'translateY(100%)', opacity: 0}),
+          animate('0.5s', style({transform: 'translateY(0)', opacity: 1}))
+        ])
+      ]
+    ),
+    trigger(
+        'leaveAnimationBot', [
+          transition(':leave', [
+            style({opacity: 1}),
+            animate('0.5s', style({opacity: 0}))
+          ])
+        ]
+      ),
+    trigger(
+        'enterAnimationTop', [
+          transition(':enter', [
+            style({transform: 'translateY(-100%)', opacity: 0}),
+            animate('0.5s', style({transform: 'translateY(0)', opacity: 1}))
+          ])
+        ]
+      )
+  ]
 })
 export class AskForTurnComponent implements OnInit {
     @Input() userType: string = "default";
@@ -35,17 +62,29 @@ export class AskForTurnComponent implements OnInit {
             'lastName': ['', [Validators.required, Validators.maxLength(100)]],
             'speciality': ['', [Validators.required]],
         });
-        this.specService.getAll().ref.get().then(res => {
-            res.docs.forEach(d => {
-                let spec = d.data();
-                this.specialities.push(spec);
+        this.spinnerSercie.show().then(() => {
+            this.specService.getAll().ref.get().then(res => {
+                res.docs.forEach(d => {
+                    let spec = d.data();
+                    this.specialities.push(spec);
+                });
+                this.spinnerSercie.hide();
             });
-        });
+        })
+        
     }
     public selectSpec(spec: any) {
         if(spec && spec.specialities) {
             this.selectedSpec = spec.specialist; 
         }
         console.log(spec.specialities);
+    }
+
+    public onSelectSpec($event: any) {
+        this.selectedSpec = $event;
+    }
+
+    public reset(): void {
+        this.selectedSpec = null;
     }
 }

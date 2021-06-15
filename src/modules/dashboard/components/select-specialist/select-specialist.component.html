@@ -1,0 +1,9 @@
+<div *ngIf="_spec">
+    <div style="display: flex; text-align: center;">
+        <div *ngFor="let specialist of specialistList">   
+            <div class="contenedor" (click)="onSelectSpecialist(specialist)">
+                <sb-specialist-face [specialist]="specialist"></sb-specialist-face>
+            </div>
+        </div>
+    </div>
+</div>

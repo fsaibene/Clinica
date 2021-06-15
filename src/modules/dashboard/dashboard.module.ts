@@ -39,6 +39,9 @@ import { SelectionComponent } from './components/user/specialist-hours/selection
 import { SpecialistAvailDaysComponent } from './components/user/specialist-avail-days/specialist-avail-days.component';
 import { SpecialistAvailRangeComponent } from './components/user/specialist-avail-range/specialist-avail-range.component';
 import { SpecialitySelectionComponent } from './components/speciality-selection/speciality-selection.component';
+import { SelectSpecialistComponent } from './components/select-specialist/select-specialist.component';
+import { SelectAppointmentTimeComponent } from './components/select-appointment-time/select-appointment-time.component';
+import { SpecialistFaceComponent } from './components/specialist-face/specialist-face.component';
 
 @NgModule({
     imports: [
@@ -53,7 +56,7 @@ import { SpecialitySelectionComponent } from './components/speciality-selection/
         AutocompleteLibModule
     ],
     providers: [...dashboardServices.services, ...dashboardGuards.guards],
-    declarations: [...dashboardContainers.containers, ...dashboardComponents.components, WelcomeComponent, AskAppointmentComponent, AppointmentHistoryComponent, UpcomingAppointmentsComponent, AskForTurnComponent, SelectAppointmentDateComponent, SpecialitiesComponent, UserComponent, UserInfoComponent, SpecialistComponent, PatientComponent, AdminComponent, SpecialistHoursComponent, SelectionComponent, SpecialistAvailDaysComponent, SpecialistAvailRangeComponent, SpecialitySelectionComponent],
+    declarations: [...dashboardContainers.containers, ...dashboardComponents.components, WelcomeComponent, AskAppointmentComponent, AppointmentHistoryComponent, UpcomingAppointmentsComponent, AskForTurnComponent, SelectAppointmentDateComponent, SpecialitiesComponent, UserComponent, UserInfoComponent, SpecialistComponent, PatientComponent, AdminComponent, SpecialistHoursComponent, SelectionComponent, SpecialistAvailDaysComponent, SpecialistAvailRangeComponent, SpecialitySelectionComponent, SelectSpecialistComponent, SelectAppointmentTimeComponent, SpecialistFaceComponent],
     exports: [...dashboardContainers.containers, ...dashboardComponents.components],
 })
 export class DashboardModule {}

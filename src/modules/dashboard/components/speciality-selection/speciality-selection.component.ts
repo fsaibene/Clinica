@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Speciality, SpecialityDefinition } from '@modules/auth/models';
 
 @Component({
@@ -8,6 +8,7 @@ import { Speciality, SpecialityDefinition } from '@modules/auth/models';
 })
 export class SpecialitySelectionComponent implements OnInit {
     @Input() spec: SpecialityDefinition;
+    @Output() specSelected: EventEmitter<any> = new EventEmitter<any>() 
     constructor() { }
 
     ngOnInit(): void {
@@ -20,4 +21,7 @@ export class SpecialitySelectionComponent implements OnInit {
         return "../../assets/specs/default.jpg";
     }
 
+    public selectSpec(): void {
+        this.specSelected.emit(this.spec);
+    }
 }

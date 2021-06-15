@@ -4,14 +4,17 @@
             <div class="card shadow-lg border-0 rounded-lg mt-12">
                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Solicitar Turno</h3></div>
                 <div class="card-body">
-                    <div class="col-md-12" style="display: flex;">
+                    <div *ngIf="!selectedSpec" [@leaveAnimationBot] class="col-md-12" style="display: flex; overflow-x: auto;">
 
                         <div class="spec-container" *ngFor="let spec of specialities">
-                            <sb-speciality-selection [spec]="spec"></sb-speciality-selection>
+                            <sb-speciality-selection (specSelected)="onSelectSpec($event)" [spec]="spec"></sb-speciality-selection>
                         </div>
                     </div>
-                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                        <a  class="btn btn-primary">Agendar turno</a>
+                    <div [@enterAnimationBot]  *ngIf="selectedSpec"> 
+                        <sb-select-specialist [spec]="selectedSpec" (specialistSelected)="onSelectSpecialist($event)"></sb-select-specialist>
+                    </div>
+                    <div *ngIf="selectedSpec" class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                        <a (click)="reset()"class="btn btn-primary">Reiniciar seleccion</a>
                     </div>
                 </div>
             </div>
