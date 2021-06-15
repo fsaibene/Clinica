@@ -49,6 +49,7 @@ export class AskForTurnComponent implements OnInit {
 
     public searchBoxSpec: string;
     public selectedSpec: any;
+    public specialist: any;
     public specialities: SpecialityDefinition[] = new Array<SpecialityDefinition>();
 
     constructor(private fb: FormBuilder, private router: Router,
@@ -86,5 +87,8 @@ export class AskForTurnComponent implements OnInit {
 
     public reset(): void {
         this.selectedSpec = null;
+    }
+    public onSelectSpecialist($event: any): void {
+        this.specialist = $event;
     }
 }

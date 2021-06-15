@@ -13,9 +13,13 @@
                     <div [@enterAnimationBot]  *ngIf="selectedSpec"> 
                         <sb-select-specialist [spec]="selectedSpec" (specialistSelected)="onSelectSpecialist($event)"></sb-select-specialist>
                     </div>
+                    <div *ngIf="selectedSpec && specialist">
+                        <sb-time-selection [selectedSpec]="selectedSpec" [specialist]="specialist"></sb-time-selection>   
+                    </div>
                     <div *ngIf="selectedSpec" class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                         <a (click)="reset()"class="btn btn-primary">Reiniciar seleccion</a>
                     </div>
+
                 </div>
             </div>
         </div>

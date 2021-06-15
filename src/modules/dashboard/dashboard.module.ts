@@ -42,6 +42,7 @@ import { SpecialitySelectionComponent } from './components/speciality-selection/
 import { SelectSpecialistComponent } from './components/select-specialist/select-specialist.component';
 import { SelectAppointmentTimeComponent } from './components/select-appointment-time/select-appointment-time.component';
 import { SpecialistFaceComponent } from './components/specialist-face/specialist-face.component';
+import { TimeSelectionComponent } from './components/time-selection/time-selection.component';
 
 @NgModule({
     imports: [
@@ -56,7 +57,7 @@ import { SpecialistFaceComponent } from './components/specialist-face/specialist
         AutocompleteLibModule
     ],
     providers: [...dashboardServices.services, ...dashboardGuards.guards],
-    declarations: [...dashboardContainers.containers, ...dashboardComponents.components, WelcomeComponent, AskAppointmentComponent, AppointmentHistoryComponent, UpcomingAppointmentsComponent, AskForTurnComponent, SelectAppointmentDateComponent, SpecialitiesComponent, UserComponent, UserInfoComponent, SpecialistComponent, PatientComponent, AdminComponent, SpecialistHoursComponent, SelectionComponent, SpecialistAvailDaysComponent, SpecialistAvailRangeComponent, SpecialitySelectionComponent, SelectSpecialistComponent, SelectAppointmentTimeComponent, SpecialistFaceComponent],
+    declarations: [...dashboardContainers.containers, ...dashboardComponents.components, WelcomeComponent, AskAppointmentComponent, AppointmentHistoryComponent, UpcomingAppointmentsComponent, AskForTurnComponent, SelectAppointmentDateComponent, SpecialitiesComponent, UserComponent, UserInfoComponent, SpecialistComponent, PatientComponent, AdminComponent, SpecialistHoursComponent, SelectionComponent, SpecialistAvailDaysComponent, SpecialistAvailRangeComponent, SpecialitySelectionComponent, SelectSpecialistComponent, SelectAppointmentTimeComponent, SpecialistFaceComponent, TimeSelectionComponent],
     exports: [...dashboardContainers.containers, ...dashboardComponents.components],
 })
 export class DashboardModule {}

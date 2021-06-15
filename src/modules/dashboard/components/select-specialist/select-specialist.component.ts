@@ -46,7 +46,7 @@ export class SelectSpecialistComponent implements OnInit {
 
     }
 
-    public onSelectSpecialist() {
-        this.specialistSelected.emit(this.spec);
+    public onSelectSpecialist(specialist: any) {
+        this.specialistSelected.emit(specialist);
     }
 }
